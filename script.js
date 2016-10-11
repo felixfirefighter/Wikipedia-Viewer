@@ -16,8 +16,9 @@ function searchWiki() {
     // &prop=revisions&rvprop=content&titles="+title+"&format=json&callback=?
     //api.php?action=query&list=allpages&apfrom=Kre&aplimit=5
 
-    $("#test").text("");
-    $("#list-container").text("");
+    var topContainer = $(".top-container");
+    var listContainer = $("#list-container");
+    listContainer.text("");
 
     var title = $("#search-box").val();
 
@@ -34,11 +35,19 @@ function searchWiki() {
     $.getJSON(url, function (data) {
         var searchResult = data.query.search;
 
+        if(searchResult !== null){
+            $("#master-container").attr("class","");
+        }else{
+            $("#master-container").attr("class","vertical-center");
+        }
+
         searchResult.forEach(function (val) {
             itemUrl = "https://en.wikipedia.org/wiki/" + val.title;
             snippetStr = val.snippet;
 
-            $("#list-container").append(
+            listContainer.hide();
+
+            listContainer.append(
                 //assign a link to the proper
                 $("<a>").attr({
                     "href": itemUrl,
@@ -47,9 +56,12 @@ function searchWiki() {
                 }).append(
                     $("<h2>")
                         .append(val.title))
-                        .append($("<p>").append(snippetStr)
+                    .append($("<p>").append(snippetStr)
                     )
             );
         });
+        listContainer.show("slide",{direction:"down"});
     });
+
+
 }

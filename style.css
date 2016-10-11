@@ -13,10 +13,10 @@ body{
 }
 
 .top-margin{
-    margin: 10px;
+    margin: 20px;
 }
 
-h1{
+.top-container{
     color: white;
 }
 
@@ -36,10 +36,10 @@ a, a:visited, a:active,a:hover {
 }
 
 #list-container a{
-    background: transparent;
+    background: white;
     margin: 5px;
     padding: 5px 30px 5px 30px;
-    color: white;
+    color: black;
 }
 
 #list-container a:hover{
