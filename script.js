@@ -18,9 +18,14 @@ function searchWiki() {
 
     var topContainer = $(".top-container");
     var listContainer = $("#list-container");
+    var masterContainer = $("#master-container");
+
     listContainer.text("");
 
     var title = $("#search-box").val();
+    if(title == ""){
+        masterContainer.attr("class","vertical-center");
+    }
 
     var url = "";
     var itemUrl = "";
@@ -35,11 +40,7 @@ function searchWiki() {
     $.getJSON(url, function (data) {
         var searchResult = data.query.search;
 
-        if(searchResult !== null){
-            $("#master-container").attr("class","");
-        }else{
-            $("#master-container").attr("class","vertical-center");
-        }
+        masterContainer.attr("class", "");
 
         searchResult.forEach(function (val) {
             itemUrl = "https://en.wikipedia.org/wiki/" + val.title;
@@ -60,7 +61,7 @@ function searchWiki() {
                     )
             );
         });
-        listContainer.show("slide",{direction:"down"});
+        listContainer.show("slide", {direction: "down"});
     });
 
 
