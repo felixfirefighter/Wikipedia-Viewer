@@ -3,6 +3,19 @@
  */
 $(document).ready(function () {
 
+    var pink = colorPink.c500;
+
+    $("#random-button").on("click",function () {
+        $("body").animate({backgroundColor:colorPink.c500},1000);
+        $("#list-container a").animate({borderColor:colorPink.c500},1000)
+            .hover(function(){
+                $(this).css("border-color","white")
+            },
+            function () {
+                $(this).css("border-color",colorPink.c500);
+            });
+    });
+
     $("#search-box").keypress(function (event) {
         var keycode = (event.keyCode ? event.keyCode : event.which);
         if (keycode == '13') {
@@ -16,7 +29,6 @@ function searchWiki() {
     // &prop=revisions&rvprop=content&titles="+title+"&format=json&callback=?
     //api.php?action=query&list=allpages&apfrom=Kre&aplimit=5
 
-    var topContainer = $(".top-container");
     var listContainer = $("#list-container");
     var masterContainer = $("#master-container");
 

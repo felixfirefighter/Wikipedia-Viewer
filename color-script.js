@@ -3,16 +3,14 @@
  */
 //color based on material design color
 
-var colorArray = [colorRed,colorPink];
-
 var colorRed = {
     "c500":"#F44336",
     "a700":"#D50000"
 };
 
 var colorPink = {
-    "c500":"#E91E63",
-    "a700":"#C51162"
+    c500:"#E91E63",
+    a700:"#C51162"
 };
 
 var colorPurple = {
@@ -28,4 +26,8 @@ var colorDeepPurple = {
 var colorIndigo = {
     "c500": "#3F51B5",
     "a700": "#304FFE"
+};
+
+var colorBlue = {
+
 };
