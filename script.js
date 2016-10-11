@@ -2,7 +2,7 @@
  * Created by LEE on 2016/10/10.
  */
 
-var colorChoice = 4; //set default as indigo
+var colorChoice = 4;
 
 $(document).ready(function () {
     $("#random-button").on("click", function () {
@@ -19,10 +19,6 @@ $(document).ready(function () {
 });
 
 function searchWiki() {
-    //http://en.wikipedia.org/w/api.php?action=query
-    // &prop=revisions&rvprop=content&titles="+title+"&format=json&callback=?
-    //api.php?action=query&list=allpages&apfrom=Kre&aplimit=5
-
     var listContainer = $("#list-container");
     var masterContainer = $("#master-container");
 
@@ -37,10 +33,7 @@ function searchWiki() {
     var itemUrl = "";
     var snippetStr = "";
 
-    //url = "http://en.wikipedia.org/w/api.php?action=query&format=json&list=allpages&apfrom=Hello&aplimit=10&callback=?";
-    //url = 'http://en.wikipedia.org/w/api.php?format=json&action=query&titles=Hello&prop=revisions&rvprop=content&callback=?';
-
-    url = "http://en.wikipedia.org/w/api.php?action=query&list=search&srsearch="
+    url = "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch="
         + encodeURI(title) + "&format=json&callback=?";
 
     $.getJSON(url, function (data) {
@@ -76,7 +69,7 @@ function changeColor() {
     $("body").animate({backgroundColor: colorC500Array[colorChoice]}, 1000);
     $("#list-container a").animate({borderColor: colorC500Array[colorChoice]}, 1000)
         .hover(function () {
-                $(this).css("border-color", "white")
+                $(this).css("border-color", "white");
             },
             function () {
                 $(this).css("border-color", colorC500Array[colorChoice]);

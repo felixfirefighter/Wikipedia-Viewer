@@ -28,7 +28,7 @@ var colorIndigo = {
 };
 
 var colorBlue = {
-    c500: "2196F3",
+    c500: "#2196F3",
     a700: "#2962FF"
 };
 
