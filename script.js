@@ -3,28 +3,27 @@
  */
 $(document).ready(function () {
 
-    $("#search-button").click(function () {
-       searchWiki();
-    });
-
-    $("#search-box").keypress(function(event){
+    $("#search-box").keypress(function (event) {
         var keycode = (event.keyCode ? event.keyCode : event.which);
-        if(keycode == '13'){
+        if (keycode == '13') {
             searchWiki();
         }
     });
 });
 
-function searchWiki(){
+function searchWiki() {
     //http://en.wikipedia.org/w/api.php?action=query
     // &prop=revisions&rvprop=content&titles="+title+"&format=json&callback=?
     //api.php?action=query&list=allpages&apfrom=Kre&aplimit=5
 
     $("#test").text("");
+    $("#list-container").text("");
 
     var title = $("#search-box").val();
 
     var url = "";
+    var itemUrl = "";
+    var snippetStr = "";
 
     //url = "http://en.wikipedia.org/w/api.php?action=query&format=json&list=allpages&apfrom=Hello&aplimit=10&callback=?";
     //url = 'http://en.wikipedia.org/w/api.php?format=json&action=query&titles=Hello&prop=revisions&rvprop=content&callback=?';
@@ -32,11 +31,25 @@ function searchWiki(){
     url = "http://en.wikipedia.org/w/api.php?action=query&list=search&srsearch="
         + encodeURI(title) + "&format=json&callback=?";
 
-    $.getJSON(url,function (data) {
+    $.getJSON(url, function (data) {
         var searchResult = data.query.search;
 
-        searchResult.forEach(function(val){
-            $("#test").append(val.title + "<br>");
+        searchResult.forEach(function (val) {
+            itemUrl = "https://en.wikipedia.org/wiki/" + val.title;
+            snippetStr = val.snippet;
+
+            $("#list-container").append(
+                //assign a link to the proper
+                $("<a>").attr({
+                    "href": itemUrl,
+                    "target": "_blank",
+                    "class": "list-group-item"
+                }).append(
+                    $("<h2>")
+                        .append(val.title))
+                        .append($("<p>").append(snippetStr)
+                    )
+            );
         });
     });
 }
