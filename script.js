@@ -1,19 +1,13 @@
 /**
  * Created by LEE on 2016/10/10.
  */
+
+var colorChoice = 0;
+
 $(document).ready(function () {
-
-    var pink = colorPink.c500;
-
-    $("#random-button").on("click",function () {
-        $("body").animate({backgroundColor:colorPink.c500},1000);
-        $("#list-container a").animate({borderColor:colorPink.c500},1000)
-            .hover(function(){
-                $(this).css("border-color","white")
-            },
-            function () {
-                $(this).css("border-color",colorPink.c500);
-            });
+    $("#random-button").on("click", function () {
+        colorChoice = Math.floor(Math.random() * colorC500Array.length);
+        changeColor();
     });
 
     $("#search-box").keypress(function (event) {
@@ -35,8 +29,8 @@ function searchWiki() {
     listContainer.text("");
 
     var title = $("#search-box").val();
-    if(title == ""){
-        masterContainer.attr("class","vertical-center");
+    if (title == "") {
+        masterContainer.attr("class", "vertical-center");
     }
 
     var url = "";
@@ -74,7 +68,17 @@ function searchWiki() {
             );
         });
         listContainer.show("slide", {direction: "down"});
+        changeColor();
     });
+}
 
-
+function changeColor() {
+    $("body").animate({backgroundColor: colorC500Array[colorChoice]}, 1000);
+    $("#list-container a").animate({borderColor: colorC500Array[colorChoice]}, 1000)
+        .hover(function () {
+                $(this).css("border-color", "white")
+            },
+            function () {
+                $(this).css("border-color", colorC500Array[colorChoice]);
+            });
 }
