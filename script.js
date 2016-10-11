@@ -3,8 +3,6 @@
  */
 $(document).ready(function () {
 
-    searchWiki();
-
     $("#search-button").click(function () {
        searchWiki();
     });
@@ -22,25 +20,23 @@ function searchWiki(){
     // &prop=revisions&rvprop=content&titles="+title+"&format=json&callback=?
     //api.php?action=query&list=allpages&apfrom=Kre&aplimit=5
 
-    $("#test").text("Working");
+    $("#test").text("");
 
-    //var title = $("#search-box").val();
+    var title = $("#search-box").val();
 
-    var url = "http://en.wikipedia.org/w/api.php?action=query&prop=revisions&rvprop=content" +
-        "&list=allpages&apfrom=Kre&aplimit=10&format=json&callback=?";
+    var url = "";
 
-    url = "http://en.wikipedia.org/w/api.php?action=query&format=json&list=allpages&apfrom=Kre&aplimit=10&callback=?";
+    //url = "http://en.wikipedia.org/w/api.php?action=query&format=json&list=allpages&apfrom=Hello&aplimit=10&callback=?";
+    //url = 'http://en.wikipedia.org/w/api.php?format=json&action=query&titles=Hello&prop=revisions&rvprop=content&callback=?';
 
-    //url = 'http://en.wikipedia.org/w/api.php?format=json&action=query&titles=India&prop=revisions&rvprop=content&callback=?';
+    url = "http://en.wikipedia.org/w/api.php?action=query&list=search&srsearch="
+        + encodeURI(title) + "&format=json&callback=?";
 
-    //api.php?action=query&titles=Main%20Page&prop=revisions&rvprop=content&format=jsonfm
-    
     $.getJSON(url,function (data) {
-        var allpages = data.query.allpages;
+        var searchResult = data.query.search;
 
-        allpages.forEach(function(val){
-            var search = encodeURI(val.title);
-            $("#test").text(search);
+        searchResult.forEach(function(val){
+            $("#test").append(val.title + "<br>");
         });
     });
 }
