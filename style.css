@@ -29,7 +29,8 @@ input:focus{
     outline:none;
 }
 
-a, a:visited, a:active,a:hover {
+#random-button a,#random-button a:visited,
+#random-button a:active,#random-button a:hover {
     font-size: 16px;
     color: white;
     text-decoration:none;

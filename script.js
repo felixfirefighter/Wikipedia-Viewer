@@ -2,7 +2,7 @@
  * Created by LEE on 2016/10/10.
  */
 
-var colorChoice = 0;
+var colorChoice = 4; //set default as indigo
 
 $(document).ready(function () {
     $("#random-button").on("click", function () {
